@@ -29,17 +29,17 @@ const Relevent = () => {
   ];
 
   return (
-    <div>
+    <div className="ml-10">
       <h1
-        data-aos="fade-left"
+        data-aos="zoom-in"
         className="text-center font-bold text-3xl mt-10 text-violet-500"
       >
         Types of Apartment that we can Work for you
       </h1>
-      <div className="flex justify-evenly my-16">
+      <div className="grid  lg:grid-cols-3 grid-cols-1 my-16">
         {cardData.map((d) => {
           return (
-            <div data-aos="flip-right">
+            <div data-aos="zoom-in-up">
               <div key={d.id} className="card w-96  drop-shadow-2xl shadow-xl ">
                 <figure>
                   <img src={d.img} alt="Shoes" />

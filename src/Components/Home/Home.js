@@ -3,6 +3,8 @@ import Relevent from "../Relevent/Relevent";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import Carousle from "../Carousle/Carousle";
+import "./Home.css";
 // import Spinner from "./Spinner";
 
 const Home = () => {
@@ -14,7 +16,7 @@ const Home = () => {
       <div
         className="hero min-h-screen"
         style={{
-          backgroundImage: `url("https://wp-tid.zillowstatic.com/bedrock/app/uploads/sites/26/What-Is-a-Duplex-882b06.jpg")`,
+          backgroundImage: `url("https://i.pinimg.com/originals/e1/0b/4e/e10b4e68413932968ffb0a4ee90b1719.jpg")`,
         }}
       >
         <div className="hero-overlay bg-opacity-60"></div>
@@ -33,6 +35,7 @@ const Home = () => {
         </div>
       </div>
       <Relevent></Relevent>
+      <Carousle></Carousle>
     </div>
   );
 };

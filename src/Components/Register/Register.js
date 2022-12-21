@@ -1,7 +1,10 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
+  // contexts
   const { createUser, updateUserProfile, verifyEmail, loading } =
     useContext(AuthContext);
   // form function
@@ -22,9 +25,20 @@ const Register = () => {
       body: formData,
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
-    // create user
-    // createUser(email, password).then((result) => {});
+      .then((data) => {
+        console.log(data.data.display_url);
+        // create user
+        createUser(email, password).then((result) => {
+          // profile update
+          updateUserProfile(name, data.data.display_url).then((result) => {
+            // email verify
+            verifyEmail().then(() => {
+              toast.success("please Chack your email for verification");
+            });
+          });
+        });
+      })
+      .catch((err) => console.log(err));
   };
   return (
     <div>
@@ -72,6 +86,7 @@ const Register = () => {
               className="btn btn-outline btn-accent rounded-lg w-full max-w-xs "
             />
           </div>
+          <ToastContainer></ToastContainer>
         </form>
       </div>
     </div>

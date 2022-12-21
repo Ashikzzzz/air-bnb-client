@@ -1,7 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FaBeer } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  // logout
+  const handleSignOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -27,19 +39,27 @@ const Header = () => {
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <Link to="/login">
-                  {" "}
-                  <a>Login</a>
-                </Link>
-              </li>
+              {user?.email && user?.uid ? (
+                <button onClick={handleSignOut} className="btn btn-ghost">
+                  Sign Out
+                </button>
+              ) : (
+                <>
+                  <li>
+                    <Link to="/login">
+                      {" "}
+                      <a>Login</a>
+                    </Link>
+                  </li>
 
-              <li>
-                <Link to="/register">
-                  {" "}
-                  <a>Sign Up</a>
-                </Link>
-              </li>
+                  <li>
+                    <Link to="/register">
+                      {" "}
+                      <a>Sign Up</a>
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
           <Link to="/">
@@ -49,23 +69,28 @@ const Header = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
-            <li>
-              <Link to="/login">
-                {" "}
-                <a>Login</a>
-              </Link>
-            </li>
+            {user?.email && user?.uid ? (
+              <button onClick={handleSignOut} className="btn btn-ghost">
+                Sign Out
+              </button>
+            ) : (
+              <>
+                <li>
+                  <Link to="/login">
+                    {" "}
+                    <a>Login</a>
+                  </Link>
+                </li>
 
-            <li>
-              <Link to="/register">
-                {" "}
-                <a>Sign Up</a>
-              </Link>
-            </li>
+                <li>
+                  <Link to="/register">
+                    {" "}
+                    <a>Sign Up</a>
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
-        </div>
-        <div className="navbar-end">
-          <a className="btn">Get started</a>
         </div>
       </div>
     </div>

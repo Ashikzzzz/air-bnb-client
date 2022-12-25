@@ -5,6 +5,7 @@ import "aos/dist/aos.css";
 import { useEffect } from "react";
 import Carousle from "../Carousle/Carousle";
 import "./Home.css";
+import Homecard from "../Homecard/Homecard";
 // import Spinner from "./Spinner";
 
 const Home = () => {
@@ -34,6 +35,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Homecard></Homecard>
       <Relevent></Relevent>
       <Carousle></Carousle>
     </div>

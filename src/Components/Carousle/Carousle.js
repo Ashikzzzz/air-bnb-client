@@ -13,7 +13,7 @@ const Carousle = () => {
   return (
     <div>
       <div>
-        <h1 className="text-center font-bold text-3xl text-amber-500 my-16">
+        <h1 className="text-center font-bold text-3xl text-amber-500 my-16 ">
           The Room catalogue{" "}
         </h1>
       </div>

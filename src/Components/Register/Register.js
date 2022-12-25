@@ -1,12 +1,17 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import toast, { Toaster } from "react-hot-toast";
+
+import { useLocation, useNavigate } from "react-router-dom";
+// import { setAuthToken } from "../../Auth/Auth";
 
 const Register = () => {
   // contexts
-  const { createUser, updateUserProfile, verifyEmail, loading } =
+  const { createUser, updateUserProfile, verifyEmail, loading, user } =
     useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   // form function
   const handleRegister = (event) => {
     event.preventDefault();
@@ -17,7 +22,11 @@ const Register = () => {
     const image = form.image.files[0];
     const formData = new FormData();
     formData.append("image", image);
-    // 316ea586e002246a2c4c300c353a1510
+
+    const currentUser = {
+      email: user.email,
+    };
+
     const url =
       "https://api.imgbb.com/1/upload?key=316ea586e002246a2c4c300c353a1510";
     fetch(url, {
@@ -26,15 +35,29 @@ const Register = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.data.display_url);
+        // console.log(data.data.display_url);
         // create user
         createUser(email, password).then((result) => {
+          // get token
+          // setAuthToken(result.user);
+          fetch(`http://localhost:5000/user/${user?.email}`, {
+            method: "PUT",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(currentUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              localStorage.setItem("airbnb-token", data.token);
+            });
           // profile update
           updateUserProfile(name, data.data.display_url).then((result) => {
             // email verify
             verifyEmail().then(() => {
               toast.success("please Chack your email for verification");
             });
+            navigate(from, { replace: true });
           });
         });
       })
@@ -86,7 +109,7 @@ const Register = () => {
               className="btn btn-outline btn-accent rounded-lg w-full max-w-xs "
             />
           </div>
-          <ToastContainer></ToastContainer>
+          <Toaster></Toaster>
         </form>
       </div>
     </div>

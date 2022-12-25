@@ -7,6 +7,7 @@ import {
   getAuth,
   onAuthStateChanged,
   sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -53,6 +54,12 @@ const AuthProvider = ({ children }) => {
     return sendEmailVerification(auth.currentUser);
   };
 
+  // password reset
+  const resetPass = (email) => {
+    setLoading(true);
+    return sendPasswordResetEmail(auth, email);
+  };
+
   // observer
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -64,6 +71,7 @@ const AuthProvider = ({ children }) => {
   // signout
   const logOut = () => {
     setLoading(true);
+    localStorage.removeItem("airbnb-token");
     return signOut(auth);
   };
 
@@ -76,6 +84,8 @@ const AuthProvider = ({ children }) => {
     logOut,
     updateUserProfile,
     verifyEmail,
+    resetPass,
+    setLoading,
   };
 
   return (

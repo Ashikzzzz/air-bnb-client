@@ -1,0 +1,38 @@
+[
+    {
+      "title": "4 bedroom apartment" ,
+      "location": "Bandarban",
+      "image": "https://cdn.mos.cms.futurecdn.net/7goCf343cXsWspUtZ4Vuh3.jpg",
+      "price": 57,
+      "capacity":"34 person",
+      "host": "John Doe",
+      "rating": "64"
+    },
+    {
+      "title": "4 bedroom apartment" ,
+      "location": "Bandarban",
+      "image": "https://cdn.mos.cms.futurecdn.net/7goCf343cXsWspUtZ4Vuh3.jpg",
+      "price": 57,
+      "capacity":"34 person",
+      "host": "John Doe",
+      "rating": "64"
+    },
+    {
+      "title": "4 bedroom apartment" ,
+      "location": "Bandarban",
+      "image": "https://cdn.mos.cms.futurecdn.net/7goCf343cXsWspUtZ4Vuh3.jpg",
+      "price": 57,
+      "capacity":"34 person",
+      "host": "John Doe",
+      "rating": "64"
+    },
+    {
+      "title": "4 bedroom apartment" ,
+      "location": "Bandarban",
+      "image": "https://cdn.mos.cms.futurecdn.net/7goCf343cXsWspUtZ4Vuh3.jpg",
+      "price": 57,
+      "capacity":"34 person",
+      "host": "John Doe",
+      "rating": "64"
+    }
+  ]

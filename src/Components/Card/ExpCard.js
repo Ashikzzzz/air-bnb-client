@@ -16,7 +16,7 @@ const ExpCard = () => {
     <div className="grid lg:grid-cols-4 grid-cols-1">
       {expDatas.slice(0, 4).map((expdata, i) => {
         return (
-          <div key={i} className="card  w-64 bg-base-100 shadow-xl">
+          <div key={i} className="card  w-52 bg-base-100 shadow-xl">
             <figure>
               <img src={expdata.image} alt="Shoes" />
             </figure>

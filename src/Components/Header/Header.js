@@ -61,6 +61,7 @@ const Header = () => {
                 </>
               )}
             </ul>
+            <i class="uil uil-ellipsis-v"></i>
           </div>
           <Link to="/">
             {" "}
@@ -92,6 +93,7 @@ const Header = () => {
             )}
           </ul>
         </div>
+        <i class="uil uil-ellipsis-v"></i>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const SearchForm = () => {
   //   const [startDate, setStartDate] = useState(new Date());
@@ -76,9 +77,13 @@ const SearchForm = () => {
           </div>
         </div>
         <div>
-          <button type="submit" className="btn btn-outline rounded-md w-full">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            type="submit"
+            className="btn btn-outline rounded-md w-full"
+          >
             Search
-          </button>
+          </motion.button>
         </div>
       </form>
     </div>

@@ -2,7 +2,15 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { FaBeer, FaStar } from "react-icons/fa";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { motion } from "framer-motion";
+
 const ExpCard = () => {
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
+
   const [expDatas, setExpDatas] = useState([]);
   useEffect(() => {
     fetch("expdata.json")
@@ -16,7 +24,12 @@ const ExpCard = () => {
     <div className="grid lg:grid-cols-4 grid-cols-1">
       {expDatas.slice(0, 4).map((expdata, i) => {
         return (
-          <div key={i} className="card  w-52 bg-base-100 shadow-xl">
+          <motion.div
+            whileHover={{ scale: 0.9 }}
+            key={i}
+            data-aos="flip-left"
+            className="card  w-52 bg-base-100 shadow-xl"
+          >
             <figure>
               <img src={expdata.image} alt="Shoes" />
             </figure>
@@ -36,7 +49,7 @@ const ExpCard = () => {
                 <p>{expdata.rating}</p>
               </div>
             </div>
-          </div>
+          </motion.div>
         );
       })}
     </div>

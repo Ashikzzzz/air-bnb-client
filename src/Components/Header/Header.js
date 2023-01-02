@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { FaBeer } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { useState } from "react";
+import { motion } from "framer-motion";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -60,12 +62,22 @@ const Header = () => {
                   </li>
                 </>
               )}
+              <Link to="/dashboard" className="lg:hidden">
+                {" "}
+                Dashboard
+              </Link>
             </ul>
-            <i class="uil uil-ellipsis-v"></i>
           </div>
           <Link to="/">
             {" "}
-            <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+            <motion.a
+              transition={{ duration: 2 }}
+              initial={{ scale: 2 }}
+              animate={{ scale: 1 }}
+              className="btn btn-ghost normal-case text-xl"
+            >
+              HotelTripHub
+            </motion.a>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -92,8 +104,8 @@ const Header = () => {
               </>
             )}
           </ul>
+          <Link to="/dashboard"> Dashboard</Link>
         </div>
-        <i class="uil uil-ellipsis-v"></i>
       </div>
     </div>
   );

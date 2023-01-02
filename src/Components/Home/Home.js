@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import Carousle from "../Carousle/Carousle";
 import "./Home.css";
 import Homecard from "../Homecard/Homecard";
+import Typical from "react-typical";
 // import Spinner from "./Spinner";
 
 const Home = () => {
@@ -25,11 +26,13 @@ const Home = () => {
           <div data-aos="fade-down-left" className="max-w-md">
             <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
             <p className="mb-5 font-serif">
-              Airbnb is an online marketplace that connects people who want to
-              rent out their homes with people who are looking for
-              accommodations in specific locales. Airbnb offers people an easy,
-              relatively stress-free way to earn some income from their
-              property.
+              <Typical
+                loop={Infinity}
+                steps={[
+                  "Airbnb is an online marketplace that connects people who want to rent out their homes with people who are looking for  accommodations in specific locales Airbnb offers people an easy relatively stress-free way to earn some income from their  property",
+                  5000,
+                ]}
+              />
             </p>
             <button className="btn btn-primary">Get Started</button>
           </div>

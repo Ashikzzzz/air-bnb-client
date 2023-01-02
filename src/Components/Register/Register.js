@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
+import { motion } from "framer-motion";
 
 import { useLocation, useNavigate } from "react-router-dom";
 // import { setAuthToken } from "../../Auth/Auth";
@@ -22,10 +23,12 @@ const Register = () => {
     const image = form.image.files[0];
     const formData = new FormData();
     formData.append("image", image);
+    // console.log(email);
 
     const currentUser = {
-      email: user.email,
+      email: user?.email,
     };
+    console.log(currentUser);
 
     const url =
       "https://api.imgbb.com/1/upload?key=316ea586e002246a2c4c300c353a1510";
@@ -103,7 +106,8 @@ const Register = () => {
             />
           </div>
           <div className="text-center my-4">
-            <input
+            <motion.input
+              whileHover={{ scale: 0.9 }}
               type="submit"
               value="Sign Up"
               className="btn btn-outline btn-accent rounded-lg w-full max-w-xs "

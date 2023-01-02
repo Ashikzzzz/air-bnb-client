@@ -7,6 +7,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { motion } from "framer-motion";
+
 // import { setAuthToken } from "../../Auth/Auth";
 
 const Login = () => {
@@ -53,7 +55,7 @@ const Login = () => {
   };
   // send data to storage batabase (google login)
   const currentUser2 = {
-    email: user?.auth?.email,
+    email: user?.email,
   };
 
   const handleGoogleLogin = () => {
@@ -119,7 +121,8 @@ const Login = () => {
             {loading ? (
               <progress className="progress w-56"></progress>
             ) : (
-              <input
+              <motion.input
+                whileHover={{ scale: 0.9 }}
                 type="submit"
                 value="Sign In"
                 className="btn btn-outline btn-info rounded-lg w-full max-w-xs "
@@ -127,22 +130,24 @@ const Login = () => {
             )}
           </div>
           <ToastContainer></ToastContainer>
-          <button
+          <motion.button
+            whileHover={{ scale: 0.9 }}
             onClick={handleResetPass}
             className="text-sm mt-2  w-1/2 mx-auto border-b-2   "
           >
             Forgot Password?
-          </button>
+          </motion.button>
         </form>
       </div>
 
       <div className="text-center">
-        <button
+        <motion.button
+          whileHover={{ scale: 0.9 }}
           onClick={handleGoogleLogin}
           className="btn btn-outline rounded max-w-xs gap-x-2  w-full my-4 btn-success "
         >
           Log In with Google <FaGoogle></FaGoogle>
-        </button>
+        </motion.button>
       </div>
     </div>
   );

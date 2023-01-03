@@ -3,6 +3,8 @@ import Dashboard from "../../Dashboard/Dashboard/Dashboard";
 import DashboardLayout from "../../layout/DashboardLayout";
 import Screen from "../../layout/Screen";
 import Chackout from "../Chackout/Chackout";
+// import Breadcumbs from "../Chackout/Breadcumbs/Breadcumbs";
+// import Chackout from "../Chackout/Chackout";
 import Home from "../Home/Home";
 import Details from "../HomeCollection/Details";
 import Login from "../Login/Login";
@@ -37,14 +39,17 @@ export const router = createBrowserRouter([
         path: "*",
         element: <NotFound></NotFound>,
       },
+
       {
         path: "searchresult",
         element: <SearchResult></SearchResult>,
       },
+
       {
         path: "terms",
         element: <Terms></Terms>,
       },
+
       {
         path: "chackout",
         element: (

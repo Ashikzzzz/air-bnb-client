@@ -23,12 +23,9 @@ const Register = () => {
     const image = form.image.files[0];
     const formData = new FormData();
     formData.append("image", image);
-    // console.log(email);
+    console.log(email);
 
-    const currentUser = {
-      email: user?.email,
-    };
-    console.log(currentUser);
+    // console.log("user", currentUser);
 
     const url =
       "https://api.imgbb.com/1/upload?key=316ea586e002246a2c4c300c353a1510";
@@ -43,7 +40,10 @@ const Register = () => {
         createUser(email, password).then((result) => {
           // get token
           // setAuthToken(result.user);
-          fetch(`http://localhost:5000/user/${user?.email}`, {
+          const currentUser = {
+            email: result?.user?.email,
+          };
+          fetch(`http://localhost:5000/user/${result?.user?.email}`, {
             method: "PUT",
             headers: {
               "content-type": "application/json",

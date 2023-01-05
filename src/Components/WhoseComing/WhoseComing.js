@@ -1,7 +1,11 @@
 import React from "react";
 
-const WhosComing = ({ setSelectedIndex, host }) => {
-  console.log(host);
+const WhosComing = ({
+  setSelectedIndex,
+  host,
+  setBookingData,
+  bookingData,
+}) => {
   return (
     <>
       <h1 className="text-2xl font-bold my-10">Traveling for work?</h1>
@@ -23,6 +27,10 @@ const WhosComing = ({ setSelectedIndex, host }) => {
       </div>
       <textarea
         className="border block my-5 p-2 ml-16"
+        value={bookingData.message}
+        onChange={(event) =>
+          setBookingData({ ...bookingData, message: event.target.value })
+        }
         placeholder={`Hello ${host?.name}! Cant wait to spend 4 night in your home`}
         name=""
         id=""

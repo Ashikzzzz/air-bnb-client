@@ -25,16 +25,16 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     // send data to storage batabase (email)
-    const currentUser = {
-      email: user?.email,
-    };
 
     // user login
     userLogin(email, password)
       .then((result) => {
         // get token
         // setAuthToken(result.user);
-        fetch(`http://localhost:5000/user/${user?.email}`, {
+        const currentUser = {
+          email: result?.user?.email,
+        };
+        fetch(`http://localhost:5000/user/${result?.user?.email}`, {
           method: "PUT",
           headers: {
             "content-type": "application/json",
@@ -54,9 +54,6 @@ const Login = () => {
       });
   };
   // send data to storage batabase (google login)
-  const currentUser2 = {
-    email: user?.email,
-  };
 
   const handleGoogleLogin = () => {
     // google login
@@ -64,7 +61,10 @@ const Login = () => {
       .then((result) => {
         // get token
         // setAuthToken(result.user);
-        fetch(`http://localhost:5000/user/${user?.email}`, {
+        const currentUser2 = {
+          email: result?.user?.email,
+        };
+        fetch(`http://localhost:5000/user/${result?.user?.email}`, {
           method: "PUT",
           headers: {
             "content-type": "application/json",

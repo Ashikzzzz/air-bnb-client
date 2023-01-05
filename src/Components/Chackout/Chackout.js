@@ -5,12 +5,72 @@ import HouseRules from "../HouseRules/HouseRules";
 import { Tab } from "@headlessui/react";
 import WhosComing from "../WhoseComing/WhoseComing";
 import Payment from "../Payment/Payment";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthProvider";
+import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Chackout = () => {
+  const { user } = useContext(AuthContext);
+  const homeData = {
+    _id: "sfhsdjhaf2736huh",
+    location: "Dhaka,Bangladesh",
+    title: "Huge Apartment with 4 bedrooms",
+    image: "https://i.ibb.co/YPXktqs/Home1.jpg",
+    from: "17/2/2022",
+    to: "19/2/2022",
+    host: {
+      name: "jhon Doe",
+      email: "jhon@gmail.com",
+    },
+    price: 98,
+    total_guest: 4,
+    bedroom: 2,
+    bathroom: 2,
+    rating: 4.8,
+    review: 64,
+  };
+
+  const [bookingData, setBookingData] = useState({
+    homeId: homeData._id,
+    hostEmail: homeData?.host?.email,
+    price: parseFloat(homeData.price) + 31,
+    guestEmail: user?.email,
+    message: "",
+  });
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const handleBooking = () => {
+    // sending data for booking
+
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(bookingData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("booking successful");
+        }
+      })
+      .catch((error) => {
+        toast.error("Booking isn't added");
+      });
+  };
+
   return (
     <div className=" grid lg:grid-cols-2 grid-cols-1">
       <div className="mx-4 ">
-        <Tab.Group>
+        <Tab.Group
+          selectedIndex={selectedIndex}
+          onChange={setSelectedIndex}
+          defaultIndex={1}
+        >
           <Tab.List className="text-gray-600 dark:text-gray-400 hover:underline">
             <Tab className="my-4 hover:text-blue-600">
               {" "}
@@ -26,15 +86,19 @@ const Chackout = () => {
           <Tab.Panels>
             <Tab.Panel>
               {" "}
-              <HouseRules></HouseRules>{" "}
+              <HouseRules setSelectedIndex={setSelectedIndex}></HouseRules>{" "}
             </Tab.Panel>
             <Tab.Panel>
               {" "}
-              <WhosComing></WhosComing>{" "}
+              <WhosComing
+                setSelectedIndex={setSelectedIndex}
+                bookingData={bookingData}
+                setBookingData={setBookingData}
+              ></WhosComing>{" "}
             </Tab.Panel>
             <Tab.Panel>
               {" "}
-              <Payment></Payment>{" "}
+              <Payment handleBooking={handleBooking}></Payment>{" "}
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>

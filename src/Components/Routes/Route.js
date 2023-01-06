@@ -1,5 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
+import BecomeAHost from "../../Dashboard/BecomeAHost/BecomeAHost";
 import Dashboard from "../../Dashboard/Dashboard/Dashboard";
+import MyBooking from "../../Dashboard/MyBooking/MyBooking";
 import DashboardLayout from "../../layout/DashboardLayout";
 import Screen from "../../layout/Screen";
 import Chackout from "../Chackout/Chackout";
@@ -72,6 +74,14 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <Dashboard></Dashboard>,
+      },
+      {
+        path: "/dashboard/my-booking",
+        element: <MyBooking></MyBooking>,
+      },
+      {
+        path: "/dashboard/become-host",
+        element: <BecomeAHost></BecomeAHost>,
       },
     ],
   },

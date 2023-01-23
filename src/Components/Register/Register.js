@@ -25,10 +25,7 @@ const Register = () => {
     formData.append("image", image);
     console.log(email);
 
-    // console.log("user", currentUser);
-
-    const url =
-      "https://api.imgbb.com/1/upload?key=316ea586e002246a2c4c300c353a1510";
+    const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMGBB_CODE}`;
     fetch(url, {
       method: "POST",
       body: formData,

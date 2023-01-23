@@ -1,5 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
+import AllBooking from "../../Dashboard/AllBooking/AllBooking";
+import AllUser from "../../Dashboard/AllUser/AllUser";
 import BecomeAHost from "../../Dashboard/BecomeAHost/BecomeAHost";
+
 import Dashboard from "../../Dashboard/Dashboard/Dashboard";
 import MyBooking from "../../Dashboard/MyBooking/MyBooking";
 import DashboardLayout from "../../layout/DashboardLayout";
@@ -73,15 +76,36 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <Dashboard></Dashboard>,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Dashboard></Dashboard>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/my-booking",
-        element: <MyBooking></MyBooking>,
+        element: (
+          <PrivateRoute>
+            <MyBooking></MyBooking>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/become-host",
-        element: <BecomeAHost></BecomeAHost>,
+        element: (
+          <PrivateRoute>
+            <BecomeAHost></BecomeAHost>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/alluser",
+        element: <AllUser></AllUser>,
+      },
+      {
+        path: "/dashboard/allbooking",
+        element: <AllBooking></AllBooking>,
       },
     ],
   },

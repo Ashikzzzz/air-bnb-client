@@ -6,10 +6,9 @@ import { AuthContext } from "../../contexts/AuthProvider";
 
 const MyBooking = () => {
   const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(true);
   const [bookings, setBookings] = useState([]);
-  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    setLoading(true);
     fetch(`http://localhost:5000/bookings?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {

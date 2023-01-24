@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
-const AdminMenu = () => {
+const UserMenu = () => {
   const { user } = useContext(AuthContext);
   return (
     <div>
@@ -12,15 +12,15 @@ const AdminMenu = () => {
           <p>Email: {user?.email}</p>
         </div>
         <li>
-          <Link to="/dashboard/allbooking">
+          <Link to="/dashboard/my-booking">
             {" "}
-            <a>All Bookings</a>
+            <a>My Bookings</a>
           </Link>
         </li>
         <li>
-          <Link to="/dashboard/alluser">
+          <Link to="/dashboard/become-host">
             {" "}
-            <a>All Users</a>
+            <a>Become A Host</a>
           </Link>
         </li>
       </ul>
@@ -28,4 +28,4 @@ const AdminMenu = () => {
   );
 };
 
-export default AdminMenu;
+export default UserMenu;

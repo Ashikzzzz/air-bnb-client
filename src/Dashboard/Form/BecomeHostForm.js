@@ -24,6 +24,14 @@ const BecomeHostForm = ({ handleSubmit }) => {
         </div>
 
         <div className="mt-6">
+          <label
+            className="font-bold text-sm block text-gray-800 mb-2"
+            htmlFor="location"
+          >
+            {" "}
+            Upload your image
+          </label>
+
           <input
             className="input input-bordered input-info  lg:w-1/3 w-full rounded-xl"
             type="file"
@@ -32,6 +40,16 @@ const BecomeHostForm = ({ handleSubmit }) => {
             id=""
           />
         </div>
+
+        <div className="mt-6 ml-96">
+          <label className="flex items-center">
+            <input type="checkbox" className="form-checkbox" required />
+            <span className="block ml-2 text-xs font-medium text-gray-700 cursor-pointer">
+              Agree to Privacy Policy
+            </span>
+          </label>
+        </div>
+
         <button
           className="btn btn-outline btn-success rounded-xl mt-4"
           type="submit"

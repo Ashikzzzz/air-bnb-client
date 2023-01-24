@@ -1,26 +1,27 @@
 import React from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthProvider";
+import { AuthContext } from "../contexts/AuthProvider";
 
-const AdminMenu = () => {
+const Sidebar2 = () => {
   const { user } = useContext(AuthContext);
   return (
     <div>
+      <h1>This is for Your menu</h1>
       <ul className="menu p-4 w-80 bg-base-200 rounded-lg text-base-content  mt-10">
         <div className="mr-4">
           <p>Email: {user?.email}</p>
         </div>
         <li>
-          <Link to="/dashboard/allbooking">
+          <Link to="/dashboard/my-booking">
             {" "}
-            <a>All Bookings</a>
+            <a>My Bookings</a>
           </Link>
         </li>
         <li>
-          <Link to="/dashboard/alluser">
+          <Link to="/dashboard/become-host">
             {" "}
-            <a>All Users</a>
+            <a>Become A Host</a>
           </Link>
         </li>
       </ul>
@@ -28,4 +29,4 @@ const AdminMenu = () => {
   );
 };
 
-export default AdminMenu;
+export default Sidebar2;

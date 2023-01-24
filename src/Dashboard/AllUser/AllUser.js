@@ -1,18 +1,24 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { getAllUser } from "../../Components/Api/user";
 
 const AllUser = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  // for refatch
   useEffect(() => {
-    fetch("http://localhost:5000/users")
-      .then((res) => res.json())
-      .then((data) => {
-        setUsers(data);
-        setLoading(false);
-      });
+    getUsers();
   }, []);
+  // get all user function
+  const getUsers = () => {
+    setLoading(true);
+    getAllUser().then((data) => {
+      setUsers(data);
+      setLoading(false);
+    });
+  };
+
   if (loading) {
     return <progress className="progress w-56"></progress>;
   }

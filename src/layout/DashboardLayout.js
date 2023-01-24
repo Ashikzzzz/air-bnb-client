@@ -4,6 +4,11 @@ import { Link, Outlet } from "react-router-dom";
 import { getRole } from "../Components/Api/user";
 import Header from "../Components/Header/Header";
 import { AuthContext } from "../contexts/AuthProvider";
+import AdminMenu from "../Dashboard/AdminMenu/AdminMenu";
+
+import UserMenu from "../Dashboard/UserMenu/UserMenu";
+import Sidebar from "./Sidebar";
+import Sidebar2 from "./Sidebar2";
 
 // import Sidebar from "../Dashboard/Sidebar/Sidebar";
 
@@ -11,14 +16,15 @@ const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
   // const { user } = useContext(AuthContext);
   const [role, setRole] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   // user role fatching
   useEffect(() => {
     setLoading(false);
     getRole(user?.email).then((data) => {
+      console.log(data);
       setRole(data);
-      setLoading(false);
+      setLoading(true);
     });
   }, [user]);
 
@@ -32,69 +38,12 @@ const DashboardLayout = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          {/* user menu  */}
-          <ul className="menu p-4 w-80 bg-base-200 rounded-lg text-base-content">
-            <div className="mr-4 ">
-              <p>Email: {user?.email}</p>
-            </div>
-            <li>
-              <Link to="/dashboard/my-booking">
-                {" "}
-                <a>My Bookings</a>
-              </Link>
-            </li>
-            <li>
-              <Link to="/dashboard/become-host">
-                {" "}
-                <a>Become a Host</a>
-              </Link>
-            </li>
-          </ul>
-          {/* Admin menu  */}
-          {role === "admin" ? (
-            <ul className="menu p-4 w-80 bg-base-200 rounded-lg text-base-content  mt-10">
-              <div className="mr-4">
-                <p>Email: {user?.email}</p>
-              </div>
-              <li>
-                <Link to="/dashboard/allbooking">
-                  {" "}
-                  <a>All bookings</a>
-                </Link>
-              </li>
-              <li>
-                <Link to="/dashboard/alluser">
-                  {" "}
-                  <a>All users</a>
-                </Link>
-              </li>
-            </ul>
-          ) : (
-            ""
-          )}
 
-          {/* host menu  */}
-          {role === "host" ? (
-            <ul className="menu p-4 w-80 bg-base-200 rounded-lg text-base-content">
-              <div className="mr-4 ">
-                <p>Email: {user?.email}</p>
-              </div>
-              <li>
-                <Link to="/dashboard/my-booking">
-                  {" "}
-                  <a>Manage Home</a>
-                </Link>
-              </li>
-              <li>
-                <Link to="/dashboard/become-host">
-                  {" "}
-                  <a>Add home</a>
-                </Link>
-              </li>
-            </ul>
-          ) : (
-            ""
-          )}
+          {/* if the user role undefined show the sidebar 2  */}
+          {role === undefined ? <Sidebar2></Sidebar2> : ""}
+
+          {/* if have role show this  */}
+          <Sidebar role={role} loading={loading}></Sidebar>
         </div>
       </div>
     </div>

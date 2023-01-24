@@ -12,20 +12,18 @@ import { useEffect } from "react";
 const BecomeAHost = () => {
   const { user } = useContext(AuthContext);
   const [role, setRole] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   // user role fatching
   useEffect(() => {
     setLoading(false);
     getRole(user?.email).then((data) => {
+      console.log(data);
       setRole(data);
-      setLoading(false);
+      setLoading(true);
     });
   }, [user]);
   // loading
-  if (loading) {
-    return <progress className="progress w-56"></progress>;
-  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -58,7 +56,7 @@ const BecomeAHost = () => {
         </div>
       ) : (
         <>
-          {!loading && (
+          {loading && (
             <BecomeHostForm handleSubmit={handleSubmit}></BecomeHostForm>
           )}
         </>

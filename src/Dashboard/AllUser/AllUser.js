@@ -1,16 +1,26 @@
 import React from "react";
+import { useContext } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { getAllUser } from "../../Components/Api/user";
+import { getAllUser, makeHost } from "../../Components/Api/user";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const AllUser = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-  // for refatch
+  // get all user
   useEffect(() => {
     getUsers();
   }, []);
-  // get all user function
+
+  const handleRequest = (user) => {
+    makeHost(user).then((data) => {
+      console.log(data);
+      getUsers();
+    });
+  };
+
+  // for refatch
   const getUsers = () => {
     setLoading(true);
     getAllUser().then((data) => {
@@ -43,7 +53,22 @@ const AllUser = () => {
                   <td>{user.email}</td>
 
                   <td>{user.role}</td>
-                  <td></td>
+                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    {user?.role && user.role === "requested" && (
+                      <span
+                        onClick={() => handleRequest(user)}
+                        className="relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight"
+                      >
+                        <span
+                          aria-hidden="true"
+                          className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
+                        ></span>
+                        <span className="relative">
+                          {loading ? "Loading..." : " Approve Request"}
+                        </span>
+                      </span>
+                    )}
+                  </td>
                 </tr>
               );
             })}

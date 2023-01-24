@@ -30,15 +30,17 @@ export const getAllUser = async () => {
 };
 
 // make host api
-// export const makeHost = async (user) => {
-//   const url = `${process.env.REACT_APP_API_URL}/user/${user?.email}`;
-//   const response = await fetch(url, {
-//     method: "PUT",
-//     method: {
-//       "content-type": "application/json",
-//     },
-//     body: JSON.stringify({ ...user, role: "host" }),
-//   });
-//   const data = await response.json();
-//   return data;
-// };
+export const makeHost = async (user) => {
+  delete user._id;
+  // console.log(user);
+  const url = `${process.env.REACT_APP_API_URL}/user/${user?.email}`;
+  const response = await fetch(url, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ ...user, role: "host" }),
+  });
+  const data = await response.json();
+  return data;
+};

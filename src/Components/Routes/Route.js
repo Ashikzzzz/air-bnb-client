@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import AddHome from "../../Dashboard/AddHome/AddHome";
 import AllBooking from "../../Dashboard/AllBooking/AllBooking";
 import AllUser from "../../Dashboard/AllUser/AllUser";
 import BecomeAHost from "../../Dashboard/BecomeAHost/BecomeAHost";
@@ -106,6 +107,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/allbooking",
         element: <AllBooking></AllBooking>,
+      },
+      {
+        path: "/dashboard/add-home",
+        element: <AddHome></AddHome>,
       },
     ],
   },

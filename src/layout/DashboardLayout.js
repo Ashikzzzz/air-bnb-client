@@ -4,9 +4,6 @@ import { Link, Outlet } from "react-router-dom";
 import { getRole } from "../Components/Api/user";
 import Header from "../Components/Header/Header";
 import { AuthContext } from "../contexts/AuthProvider";
-import AdminMenu from "../Dashboard/AdminMenu/AdminMenu";
-
-import UserMenu from "../Dashboard/UserMenu/UserMenu";
 import Sidebar from "./Sidebar";
 import Sidebar2 from "./Sidebar2";
 
@@ -14,9 +11,8 @@ import Sidebar2 from "./Sidebar2";
 
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
-  // const { user } = useContext(AuthContext);
   const [role, setRole] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // user role fatching
   useEffect(() => {
@@ -24,7 +20,7 @@ const DashboardLayout = () => {
     getRole(user?.email).then((data) => {
       console.log(data);
       setRole(data);
-      setLoading(true);
+      setLoading(false);
     });
   }, [user]);
 

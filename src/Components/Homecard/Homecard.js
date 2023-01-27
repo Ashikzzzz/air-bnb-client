@@ -30,7 +30,7 @@ const Homecard = () => {
                 </marquee>
               </div>{" "}
               <button className="btn btn-outline btn-info ml-2 rounded">
-                <Link to="/coming-soon">See All</Link>
+                <Link to="/all-home">See All</Link>
               </button>
             </div>
             <HomeCollection></HomeCollection>

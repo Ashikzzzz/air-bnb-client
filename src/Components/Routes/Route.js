@@ -3,8 +3,10 @@ import AddHome from "../../Dashboard/AddHome/AddHome";
 import AllBooking from "../../Dashboard/AllBooking/AllBooking";
 import AllUser from "../../Dashboard/AllUser/AllUser";
 import BecomeAHost from "../../Dashboard/BecomeAHost/BecomeAHost";
+import AllHome from "../../Dashboard/Dashboard/AllHome/AllHome";
 
 import Dashboard from "../../Dashboard/Dashboard/Dashboard";
+import ManageHome from "../../Dashboard/ManageHome/ManageHome";
 import MyBooking from "../../Dashboard/MyBooking/MyBooking";
 import DashboardLayout from "../../layout/DashboardLayout";
 import Screen from "../../layout/Screen";
@@ -54,6 +56,10 @@ export const router = createBrowserRouter([
       {
         path: "terms",
         element: <Terms></Terms>,
+      },
+      {
+        path: "/all-home",
+        element: <AllHome></AllHome>,
       },
 
       {
@@ -111,6 +117,11 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/add-home",
         element: <AddHome></AddHome>,
+      },
+
+      {
+        path: "/dashboard/manage-home",
+        element: <ManageHome></ManageHome>,
       },
     ],
   },

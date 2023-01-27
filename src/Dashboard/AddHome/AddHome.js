@@ -6,26 +6,32 @@ import { format } from "date-fns";
 import AddServiceForm from "./AddServiceForm";
 import { getImageUrl } from "../../Components/Api/ImageUrl";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { addHome } from "../../Components/Api/HomeService";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AddHome = () => {
   const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
   const [arrivalDate, setArrivalDate] = useState(new Date());
   const [departureDate, setDepartureDate] = useState(
     new Date(arrivalDate.getTime() + 24 * 60 * 60 * 1000)
   );
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const location = event.target.location.value;
     const title = event.target.title.value;
-    const from = format(arrivalDate, "P");
-    const to = format(departureDate, "P");
+    const from = arrivalDate;
+    const to = departureDate;
     const price = event.target.price.value;
     const total_guest = event.target.total_guest.value;
     const bedrooms = event.target.bedrooms.value;
     const bathrooms = event.target.bathrooms.value;
     const description = event.target.description.value;
     const image = event.target.image.files[0];
+    setLoading(true);
     getImageUrl(image)
       .then((data) => {
         const homeData = {
@@ -39,14 +45,25 @@ const AddHome = () => {
           bathrooms,
           description,
           image: data,
-          host: {
-            name: user?.displayName,
-            image: user?.photoURL,
-            email: user?.email,
-          },
+          // host: {
+          //   name: user?.displayName,
+          //   image: user?.photoURL,
+          //   email: user?.email,
+          // },
         };
+        console.log(homeData);
+
+        addHome(homeData).then((data) => {
+          setLoading(false);
+          console.log(data);
+          toast.success("Home Added Successful");
+          navigate("/dashboard/manage-home");
+        });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+      });
   };
   return (
     <>
@@ -59,6 +76,8 @@ const AddHome = () => {
         setArrivalDate={setArrivalDate}
         departureDate={departureDate}
         setDepartureDate={setDepartureDate}
+        loading={loading}
+        toast={toast}
       />
     </>
   );

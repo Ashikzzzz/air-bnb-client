@@ -65,7 +65,7 @@ const SearchForm = () => {
           <div className="shadow-md rounded flex justify-between items-center">
             <div>
               <p className="block text-xs text-gray-700 shadow-lg">
-                Arrival date
+                Departure date
               </p>
               <DatePicker
                 selected={departure}

@@ -1,5 +1,6 @@
 import React from "react";
 import DatePicker from "react-datepicker";
+import { ToastContainer } from "react-toastify";
 
 const AddServiceForm = ({
   handleSubmit,
@@ -7,6 +8,8 @@ const AddServiceForm = ({
   setArrivalDate,
   departureDate,
   setDepartureDate,
+  loading,
+  toast,
 }) => {
   return (
     <>
@@ -157,8 +160,9 @@ const AddServiceForm = ({
               type="submit"
               className="block w-full p-3 text-center font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-r from-emerald-500 to-lime-500 hover:bg-gray-200 hover:text-gray-700 focus:shadow-outline focus:outline-none"
             >
-              Save & Continue
+              {loading ? "loading..." : "Save & Continue"}
             </button>
+            <ToastContainer></ToastContainer>
           </form>
         </div>
       </div>

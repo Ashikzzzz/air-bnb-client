@@ -16,7 +16,7 @@ const HostMenu = () => {
           <p>Email: {user?.email}</p>
         </div>
         <li>
-          <Link to="">
+          <Link to="/dashboard/manage-home">
             {" "}
             <a>Manage Home</a>
           </Link>

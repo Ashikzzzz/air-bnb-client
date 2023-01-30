@@ -1,6 +1,10 @@
+import { format } from "date-fns";
 import React from "react";
+import { FaArrowRight, IconName } from "react-icons/fa";
 import { Link } from "react-router-dom";
 const CheckoutCart = ({ chackoutData }) => {
+  const from = format(new Date(chackoutData?.homes?.from), "PP");
+  const to = format(new Date(chackoutData?.homes?.to), "PP");
   // console.log(chackoutData);
   return (
     <div class="px-6 py-5 md:w-1/2 lg:w-full w-full h-full rounded-md shadow-lg">
@@ -22,9 +26,12 @@ const CheckoutCart = ({ chackoutData }) => {
 
       <p>Dates</p>
       <div className="flex justify-between items-center p-2 border mt-1 mb-2">
-        <div>From:{chackoutData.homes.from} </div>
-        <div></div>
-        <div>To: {chackoutData.homes.to}</div>
+        <div>From: {from} </div>
+        <div>
+          {" "}
+          <FaArrowRight></FaArrowRight>{" "}
+        </div>
+        <div>To: {to}</div>
       </div>
 
       <div class="flex border-t border-gray-200 py-2">

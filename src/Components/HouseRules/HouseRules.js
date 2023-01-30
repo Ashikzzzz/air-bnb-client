@@ -1,33 +1,63 @@
+import { differenceInCalendarDays, format } from "date-fns/esm";
 import React from "react";
 
 const ReviewHouse = ({ setSelectedIndex, chackoutData }) => {
-  console.log(chackoutData);
+  const from = format(new Date(chackoutData?.homes?.from), "PP").split(",")[0];
+  const to = format(new Date(chackoutData?.homes?.to), "PP").split(",")[0];
+  const day1 = format(new Date(chackoutData?.homes?.from), "cccc").split(
+    ","
+  )[0];
+  const day2 = format(new Date(chackoutData?.homes?.to), "cccc").split(",")[0];
+
+  // days difference
+  const from1 = new Date(chackoutData?.homes?.from);
+  const to1 = new Date(chackoutData?.homes?.to);
+  const dateDifference = differenceInCalendarDays(to1, from1);
+  console.log(dateDifference);
+
   return (
     <>
       <h1 className="text-gray-900 title-font text-4xl font-medium">
         Review house rules
       </h1>
       <br />
+      <div>
+        <p>
+          {" "}
+          {dateDifference} days at{" "}
+          <span className="font-bold"> {chackoutData?.homes?.title}</span>
+        </p>
+      </div>
+      <div>
+        <p>
+          You are going to Enjoy at{" "}
+          <span className="font-bold text-lg">
+            {chackoutData?.homes?.location}
+          </span>
+        </p>
+      </div>
 
       <div className="flex flex-wrap gap-10 ml-20 mt-4">
         <div className="flex justify-between gap-2">
           <div className="text-sm px-3 py-1 bg-gray-200 text-center">
-            <p>APR</p>
-            <p>13</p>
+            <p> {from}</p>
           </div>
           <div>
-            <p>Monday check-in</p>
+            <p>
+              <span className="font-bold">{day1}</span> check-in
+            </p>
             <p>After 12:00 PM</p>
           </div>
         </div>
         <div className="flex justify-between">
           <div className="flex justify-between gap-2">
             <div className="text-sm px-3 py-1 bg-gray-200 text-center">
-              <p>APR</p>
-              <p>13</p>
+              <p>{to}</p>
             </div>
             <div>
-              <p>Monday check-in</p>
+              <p>
+                <span className="font-bold">{day2}</span> check-in
+              </p>
               <p>After 12:00 PM</p>
             </div>
           </div>

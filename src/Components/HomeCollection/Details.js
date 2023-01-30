@@ -1,10 +1,13 @@
 import React from "react";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
+import { format } from "date-fns";
 
 const Details = () => {
   const homes = useLoaderData();
   const navigate = useNavigate();
+  const from = format(new Date(homes?.from), "PP");
+  const to = format(new Date(homes?.to), "PP");
   console.log(homes);
 
   const handleReserve = () => {
@@ -147,9 +150,9 @@ const Details = () => {
 
           <p>Dates</p>
           <div className="flex justify-between items-center p-2 border mt-1 mb-2">
-            <div>From: {homes.from}</div>
+            <div>From: {from}</div>
             <div></div>
-            <div>To: {homes.to}</div>
+            <div>To: {to}</div>
           </div>
 
           <div className="flex border-t justify-between border-gray-200 py-2">

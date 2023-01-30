@@ -23,8 +23,8 @@ const AddHome = () => {
     event.preventDefault();
     const location = event.target.location.value;
     const title = event.target.title.value;
-    const from = arrivalDate;
-    const to = departureDate;
+    const from = format(arrivalDate, "P");
+    const to = format(departureDate, "P");
     const price = event.target.price.value;
     const total_guest = event.target.total_guest.value;
     const bedrooms = event.target.bedrooms.value;
@@ -45,6 +45,7 @@ const AddHome = () => {
           bathrooms,
           description,
           image: data,
+          email: user?.email,
           // host: {
           //   name: user?.displayName,
           //   image: user?.photoURL,

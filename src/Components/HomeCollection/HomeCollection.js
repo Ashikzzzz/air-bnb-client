@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { motion } from "framer-motion";
+import { useQuery } from "react-query";
 
 const HomeCollection = () => {
   // aos start
@@ -12,32 +13,34 @@ const HomeCollection = () => {
     AOS.init({ duration: 2000 });
   }, []);
   // end
-  const [homes, setHomes] = useState([]);
-  useEffect(() => {
-    fetch("room.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setHomes(data);
-        console.log(data);
-      });
-  }, []);
+  const { data: homes, isLoading } = useQuery({
+    queryKey: ["homes"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/homes");
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
-    <div className="grid lg:grid-cols-4  grid-cols-1 my-7">
-      {homes.map((home) => {
+    <div className="grid lg:grid-cols-4 grid-cols-1 gap-x-10">
+      {homes?.slice(0, 4).map((home) => {
         return (
-          <Link to="/details">
-            <motion.div
-              whileHover={{ scale: 0.9 }}
-              data-aos="flip-right"
-              className="card w-52 bg-base-100 shadow-xl image-full"
-            >
-              <figure>
-                <img src={home.image} alt="Shoes" />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">{home.title}</h2>
-                <p>capacity: {home.capacity}</p>
+          <Link to={`/details/${home._id}`}>
+            <motion.div whileHover={{ scale: 1.1 }}>
+              <div className="card w-48 bg-base-100 shadow-xl">
+                <figure>
+                  <img src={home.image} alt="Shoes" />
+                </figure>
+                <div className="card-body">
+                  <h2 className="font-bold text-2xl">{home.title}</h2>
+                  <p>Price: {home.price}</p>
+                  <p>Clice to see Detail</p>
+                </div>
               </div>
             </motion.div>
           </Link>

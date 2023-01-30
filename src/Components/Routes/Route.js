@@ -40,8 +40,10 @@ export const router = createBrowserRouter([
         element: <Register></Register>,
       },
       {
-        path: "details",
+        path: "/details/:id",
         element: <Details></Details>,
+        loader: ({ params }) =>
+          fetch(`${process.env.REACT_APP_API_URL}/home/${params.id}`),
       },
       {
         path: "*",

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ChackoutCart from "../ChackoutCart/ChackoutCart";
 import HouseRules from "../HouseRules/HouseRules";
 import { Tab } from "@headlessui/react";
@@ -13,6 +13,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Chackout = () => {
   const { user } = useContext(AuthContext);
+  const { state: chackoutData } = useLocation();
+
   const homeData = {
     _id: "sfhsdjhaf2736huh",
     location: "Dhaka,Bangladesh",
@@ -86,7 +88,10 @@ const Chackout = () => {
           <Tab.Panels>
             <Tab.Panel>
               {" "}
-              <HouseRules setSelectedIndex={setSelectedIndex}></HouseRules>{" "}
+              <HouseRules
+                setSelectedIndex={setSelectedIndex}
+                chackoutData={chackoutData}
+              ></HouseRules>{" "}
             </Tab.Panel>
             <Tab.Panel>
               {" "}
@@ -104,7 +109,7 @@ const Chackout = () => {
         </Tab.Group>
       </div>
       <div>
-        <ChackoutCart></ChackoutCart>
+        <ChackoutCart chackoutData={chackoutData}></ChackoutCart>
       </div>
     </div>
   );

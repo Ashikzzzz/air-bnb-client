@@ -1,10 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
 
 const Details = () => {
-  let totalNights = 0;
-  let sub_total = 0;
-  let total = 0;
+  const homes = useLoaderData();
+  const navigate = useNavigate();
+  console.log(homes);
+
+  const handleReserve = () => {
+    const data = {
+      homes: homes,
+    };
+    navigate("/chackout", { state: data });
+  };
 
   return (
     <div>
@@ -14,7 +22,7 @@ const Details = () => {
           <img
             alt="feature"
             className="object-cover object-start h-full w-full"
-            src="https://i.ibb.co/YPXktqs/Home1.jpg"
+            src={homes.image}
           />
         </div>
         <div className="w-1/2 h-full overflow-hidden">
@@ -33,11 +41,11 @@ const Details = () => {
           <div className="flex justify-between">
             <div>
               <h2 className="text-gray-900 title-font text-lg font-medium">
-                Huge Apartment with 4 bedrooms
+                {homes.title}
               </h2>
               <br />
               <h3 className="text-gray-400 text-xs tracking-widest title-font mb-1 mt-1">
-                Dhaka, Bangladesh
+                {homes.location}
               </h3>
               <h3 className="text-gray-400 text-xs tracking-widest title-font mb-1 mt-1">
                 04 Guests 02 Bedrooms 1 bath
@@ -51,7 +59,7 @@ const Details = () => {
                   className="w-16 h-16 border rounded-full"
                   src="https://i.ibb.co/6JM5VJF/photo-1633332755192-727a05c4013d.jpg"
                 />
-                <p>John Doe</p>
+                <p>{homes?.email}</p>
               </div>
             </div>
           </div>
@@ -96,13 +104,7 @@ const Details = () => {
           </div>
           <hr />
           <div className="mt-4 text-gray-500">
-            <p>
-              It's newly constructed 7 storied building maintaining building
-              code by a locally famous architect. Enough lights and natural air
-              are playing here. The place (apartment) is calm and noise free.
-              You'll love my place for its lovely and bright looks comfortable
-              stay.
-            </p>
+            <p>{homes.description}</p>
             <p>
               Bangladesh is a beauty with its six seasons and green. The people
               are hospitable and worm.It's newly constructed 7 storied building
@@ -123,8 +125,13 @@ const Details = () => {
           <br />
           <div>
             <p className="text-xl text-gray-900">Reviews</p>
-            <div className="flex gap-1 mb-2">
+
+            <div className="flex items-center gap-1 mb-2">
               <span>4.8 (10 reviews)</span>
+              <FaStar className="text-yellow-500"></FaStar>
+              <FaStar className="text-yellow-500"></FaStar>
+              <FaStar className="text-yellow-500"></FaStar>
+              <FaStar className="text-yellow-500"></FaStar>
             </div>
           </div>
         </div>
@@ -140,34 +147,39 @@ const Details = () => {
 
           <p>Dates</p>
           <div className="flex justify-between items-center p-2 border mt-1 mb-2">
-            <div>13/11/2022</div>
+            <div>From: {homes.from}</div>
             <div></div>
-            <div>15/11/2022</div>
+            <div>To: {homes.to}</div>
           </div>
 
-          <div className="flex border-t border-gray-200 py-2">
-            <span className="text-gray-500">$34 x {totalNights} nights</span>
-            <span className="ml-auto text-gray-900">${sub_total}</span>
+          <div className="flex border-t justify-between border-gray-200 py-2">
+            <span className="text-gray-500 ">Maximum Guest:</span>
+            <span className="text-gray-500">{homes.total_guest}</span>
           </div>
-          <div className="flex border-t border-gray-200 py-2">
-            <span className="text-gray-500">Cleaning Fee</span>
-            <span className="ml-auto text-gray-900">$10</span>
+          <div className="flex border-t justify-between border-gray-200 py-2">
+            <span className="text-gray-500 ">BedRooms:</span>
+            <span className="text-gray-500">{homes.bedrooms}</span>
           </div>
-          <div className="flex border-t border-gray-200 py-2">
-            <span className="text-gray-500">Service Fee</span>
-            <span className="ml-auto text-gray-900">$21</span>
+          <div className="flex border-t justify-between border-gray-200 py-2">
+            <span className="text-gray-500 ">Bathrooms:</span>
+            <span className="text-gray-500">{homes.bathrooms}</span>
           </div>
+          <div className="flex border-t justify-between border-gray-200 py-2">
+            <span className="text-gray-500 ">Price:</span>
+            <span className="text-gray-500">{homes.price}</span>
+          </div>
+
           <div className="flex border-t border-b mb-6 border-gray-200 py-2">
             <span className="text-gray-900 font-bold">Total</span>
-            <span className="ml-auto text-gray-900">${total}</span>
+            <span className="ml-auto text-gray-900">{homes.price}</span>
           </div>
           <div>
-            <Link to="/chackout">
-              {" "}
-              <button className="btn btn-outline rounded-2xl w-full">
-                Reserve
-              </button>
-            </Link>
+            <button
+              onClick={handleReserve}
+              className="btn btn-outline rounded-2xl w-full"
+            >
+              Reserve
+            </button>
           </div>
           <div className="mt-6 mb-2"></div>
           <p className="text-center text-gray-400 mb-6">

@@ -13,7 +13,34 @@ const ManageHome = () => {
   console.log(homes);
   return (
     <div>
-      <h1>Hi</h1>
+      <div className="overflow-x-auto mx-4">
+        <table className="table table-zebra w-full">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Location</th>
+              <th>Price</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {homes?.map((home) => {
+              return (
+                <tr>
+                  <th>{home.title}</th>
+                  <td>{home.location}</td>
+                  <td>{home.price}</td>
+                  <td>{home.from}</td>
+                  <td>{home.to}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

@@ -1,16 +1,15 @@
 import React from "react";
 import { useQuery } from "react-query";
+import { Link, useNavigate } from "react-router-dom";
 
 const AllHome = () => {
-  const {
-    data: homes,
-
-    isLoading,
-  } = useQuery({
+  const navigate = useNavigate();
+  const { data: homes, isLoading } = useQuery({
     queryKey: ["homes"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/homes");
       const data = await res.json();
+
       return data;
     },
   });

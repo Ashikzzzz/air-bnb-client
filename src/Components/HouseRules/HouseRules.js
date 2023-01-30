@@ -1,15 +1,14 @@
 import React from "react";
 
-const ReviewHouse = ({ setSelectedIndex }) => {
+const ReviewHouse = ({ setSelectedIndex, chackoutData }) => {
+  console.log(chackoutData);
   return (
     <>
       <h1 className="text-gray-900 title-font text-4xl font-medium">
         Review house rules
       </h1>
       <br />
-      <h3 className="text-gray-900 title-font text-xl font-medium">
-        3 nights in Dhaka
-      </h3>
+
       <div className="flex flex-wrap gap-10 ml-20 mt-4">
         <div className="flex justify-between gap-2">
           <div className="text-sm px-3 py-1 bg-gray-200 text-center">

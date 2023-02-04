@@ -57,29 +57,28 @@ const Login = () => {
 
   const handleGoogleLogin = () => {
     // google login
-    googleLogin(googleProvider)
-      .then((result) => {
-        // get token
-        // setAuthToken(result.user);
-        const currentUser2 = {
-          email: result?.user?.email,
-        };
-        fetch(`http://localhost:5000/user/${result?.user?.email}`, {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(currentUser2),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            localStorage.setItem("airbnb-token", data.token);
-          });
-        console.log(result);
+    googleLogin(googleProvider).then((result) => {
+      // get token
+      // setAuthToken(result.user);
+      const currentUser2 = {
+        email: result?.user?.email,
+      };
+      fetch(`http://localhost:5000/user/${result?.user?.email}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(currentUser2),
       })
-      .catch((err) => {
-        toast.error(err.message);
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          localStorage.setItem("airbnb-token", data.token);
+        });
+      console.log(result);
+    });
+    setLoading(false).catch((err) => {
+      toast.error(err.message);
+    });
   };
 
   const handleResetPass = () => {

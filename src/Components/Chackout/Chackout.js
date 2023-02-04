@@ -14,30 +14,35 @@ import "react-toastify/dist/ReactToastify.css";
 const Chackout = () => {
   const { user } = useContext(AuthContext);
   const { state: chackoutData } = useLocation();
+  console.log(chackoutData);
 
-  const homeData = {
-    _id: "sfhsdjhaf2736huh",
-    location: "Dhaka,Bangladesh",
-    title: "Huge Apartment with 4 bedrooms",
-    image: "https://i.ibb.co/YPXktqs/Home1.jpg",
-    from: "17/2/2022",
-    to: "19/2/2022",
-    host: {
-      name: "jhon Doe",
-      email: "jhon@gmail.com",
-    },
-    price: 98,
-    total_guest: 4,
-    bedroom: 2,
-    bathroom: 2,
-    rating: 4.8,
-    review: 64,
-  };
+  // const homeData = {
+  //   _id: "sfhsdjhaf2736huh",
+  //   location: "Dhaka,Bangladesh",
+  //   title: "Huge Apartment with 4 bedrooms",
+  //   image: "https://i.ibb.co/YPXktqs/Home1.jpg",
+  //   from: "17/2/2022",
+  //   to: "19/2/2022",
+  //   host: {
+  //     name: "jhon Doe",
+  //     email: "jhon@gmail.com",
+  //   },
+  //   price: 98,
+  //   total_guest: 4,
+  //   bedroom: 2,
+  //   bathroom: 2,
+  //   rating: 4.8,
+  //   review: 64,
+  // };
 
   const [bookingData, setBookingData] = useState({
-    homeId: homeData._id,
-    hostEmail: homeData?.host?.email,
-    price: parseFloat(homeData.price) + 31,
+    image: chackoutData?.homes?.image,
+    title: chackoutData?.homes?.title,
+    location: chackoutData?.homes?.location,
+    from: chackoutData?.homes?.from,
+    to: chackoutData?.homes?.to,
+    price: chackoutData?.homes?.price,
+    hostEmail: chackoutData?.homes?.email,
     guestEmail: user?.email,
     message: "",
   });
@@ -99,6 +104,7 @@ const Chackout = () => {
                 setSelectedIndex={setSelectedIndex}
                 bookingData={bookingData}
                 setBookingData={setBookingData}
+                host={chackoutData?.email}
               ></WhosComing>{" "}
             </Tab.Panel>
             <Tab.Panel>

@@ -8,8 +8,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const Register = () => {
   // contexts
-  const { createUser, updateUserProfile, verifyEmail, loading, user } =
-    useContext(AuthContext);
+  const {
+    createUser,
+    updateUserProfile,
+    verifyEmail,
+    loading,
+    setLoading,
+    user,
+  } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -23,8 +29,13 @@ const Register = () => {
     const image = form.image.files[0];
     const formData = new FormData();
     formData.append("image", image);
-    console.log(email);
-
+    const registerData = {
+      name,
+      email,
+      password,
+      image,
+    };
+    console.log(registerData);
     const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMGBB_CODE}`;
     fetch(url, {
       method: "POST",
@@ -57,6 +68,7 @@ const Register = () => {
             verifyEmail().then(() => {
               toast.success("please Chack your email for verification");
             });
+            setLoading(false);
             navigate(from, { replace: true });
           });
         });

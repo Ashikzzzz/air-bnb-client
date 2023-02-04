@@ -50,6 +50,14 @@ const CheckoutCart = ({ chackoutData }) => {
           {chackoutData.homes.bathrooms}
         </span>
       </div>
+      <div class="flex border-t border-gray-200 py-2">
+        <span class="text-gray-500">Price:</span>
+        <span class="ml-auto text-gray-900">{chackoutData?.homes?.price}</span>
+      </div>
+      <div class="flex border-t border-gray-200 py-2">
+        <span class="text-gray-500">Vat:</span>
+        <span class="ml-auto text-gray-900">0</span>
+      </div>
 
       <div class="flex border-t border-b mb-6 border-gray-200 py-2">
         <span class="text-gray-900 font-bold">Total</span>

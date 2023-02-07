@@ -21,6 +21,8 @@ import NotFound from "../NotFound/NotFound";
 import Register from "../Register/Register";
 import SearchResult from "../SearchForm/SearchResult";
 import Terms from "../Terms/Terms";
+import AdminRoute from "./AdminRoute";
+import HostRoute from "./HostRoute";
 import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -111,24 +113,49 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/alluser",
-        element: <AllUser></AllUser>,
+        element: (
+          <AdminRoute>
+            {" "}
+            <AllUser></AllUser>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/allbooking",
-        element: <AllBooking></AllBooking>,
+        element: (
+          <AdminRoute>
+            {" "}
+            <AllBooking></AllBooking>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/add-home",
-        element: <AddHome></AddHome>,
+        element: (
+          <HostRoute>
+            {" "}
+            <AddHome></AddHome>
+          </HostRoute>
+        ),
       },
 
       {
         path: "/dashboard/manage-home",
-        element: <ManageHome></ManageHome>,
+        element: (
+          <HostRoute>
+            {" "}
+            <ManageHome></ManageHome>
+          </HostRoute>
+        ),
       },
       {
         path: "/dashboard/updateHomeForm/:id",
-        element: <UpdateHomeForm></UpdateHomeForm>,
+        element: (
+          <HostRoute>
+            {" "}
+            <UpdateHomeForm></UpdateHomeForm>
+          </HostRoute>
+        ),
         loader: ({ params }) =>
           fetch(`${process.env.REACT_APP_API_URL}/home/${params.id}`),
       },

@@ -12,7 +12,12 @@ const AllBooking = () => {
   } = useQuery({
     queryKey: ["bookings"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/bookings");
+      const res = await fetch("http://localhost:5000/bookings", {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+        },
+      });
       const data = await res.json();
 
       return data;

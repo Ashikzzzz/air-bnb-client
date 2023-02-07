@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useQuery } from "react-query";
 import { AuthContext } from "../../contexts/AuthProvider";
@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 
 const ManageHome = () => {
   const { user } = useContext(AuthContext);
+  console.log(user);
   const url = `http://localhost:5000/homes?email=${user?.email}`;
+  console.log(url);
   const { data: homes, refetch } = useQuery({
     queryKey: ["homes", user?.email],
     queryFn: async () => {
@@ -15,7 +17,18 @@ const ManageHome = () => {
       return data;
     },
   });
-  console.log(homes);
+  // const [homes, setHomes] = useState([]);
+
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/homes?email=${user?.email}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setHomes(data);
+  //     });
+  // }, [user?.email]);
+
+  // console.log(homes);
   // delete home
   const handleDelete = (_id) => {
     fetch(`http://localhost:5000/homes/${_id}`, {

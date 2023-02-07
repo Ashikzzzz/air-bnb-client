@@ -45,7 +45,7 @@ const AddHome = () => {
           bathrooms,
           description,
           image: data,
-          email: user?.email,
+          hostEmail: user?.email,
           // host: {
           //   name: user?.displayName,
           //   image: user?.photoURL,

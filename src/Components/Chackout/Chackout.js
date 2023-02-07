@@ -4,16 +4,20 @@ import ChackoutCart from "../ChackoutCart/ChackoutCart";
 import HouseRules from "../HouseRules/HouseRules";
 import { Tab } from "@headlessui/react";
 import WhosComing from "../WhoseComing/WhoseComing";
-import Payment from "../Payment/Payment";
+import { Elements } from "@stripe/react-stripe-js";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { loadStripe } from "@stripe/stripe-js";
+import CheckoutForm from "../../Dashboard/Form/CheckoutForm";
 
 const Chackout = () => {
   const { user } = useContext(AuthContext);
   const { state: chackoutData } = useLocation();
+  const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
+
   console.log(chackoutData);
 
   // const homeData = {
@@ -48,27 +52,6 @@ const Chackout = () => {
   });
 
   const [selectedIndex, setSelectedIndex] = useState(0);
-
-  const handleBooking = () => {
-    // sending data for booking
-
-    fetch("http://localhost:5000/bookings", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(bookingData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.acknowledged) {
-          toast.success("booking successful");
-        }
-      })
-      .catch((error) => {
-        toast.error("Booking isn't added");
-      });
-  };
 
   return (
     <div className=" grid lg:grid-cols-2 grid-cols-1">
@@ -108,8 +91,9 @@ const Chackout = () => {
               ></WhosComing>{" "}
             </Tab.Panel>
             <Tab.Panel>
-              {" "}
-              <Payment handleBooking={handleBooking}></Payment>{" "}
+              <Elements stripe={stripePromise}>
+                <CheckoutForm bookingData={bookingData} />
+              </Elements>
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>

@@ -2,9 +2,14 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useQuery } from "react-query";
+import { toast, ToastContainer } from "react-toastify";
 
 const AllBooking = () => {
-  const { data: allBookings, isLoading } = useQuery({
+  const {
+    data: allBookings,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["bookings"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/bookings");
@@ -16,7 +21,17 @@ const AllBooking = () => {
 
   // bookings delete
   const handleDelete = (_id) => {
-    console.log(_id);
+    fetch(`http://localhost:5000/bookings/${_id}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        refetch();
+        toast.success("deleted SuccessFul");
+      });
   };
 
   return (
@@ -66,6 +81,7 @@ const AllBooking = () => {
                         Cancle
                       </button>
                     </td>
+                    <ToastContainer></ToastContainer>
                   </tr>
                 );
               })}

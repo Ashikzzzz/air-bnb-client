@@ -1,14 +1,23 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useQuery } from "react-query";
 
 const AllBooking = () => {
-  const [allBookings, setAllBookings] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:5000/bookings")
-      .then((res) => res.json())
-      .then((data) => setAllBookings(data));
-  }, []);
+  const { data: allBookings, isLoading } = useQuery({
+    queryKey: ["bookings"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/bookings");
+      const data = await res.json();
+
+      return data;
+    },
+  });
+
+  // bookings delete
+  const handleDelete = (_id) => {
+    console.log(_id);
+  };
 
   return (
     <div>
@@ -18,7 +27,8 @@ const AllBooking = () => {
             <thead>
               <tr>
                 <th></th>
-
+                <th></th>
+                <th>Title</th>
                 <th>Location</th>
                 <th>Price</th>
                 <th>From</th>
@@ -31,12 +41,30 @@ const AllBooking = () => {
                 return (
                   <tr key={allBooking._id} className="">
                     <th>{i + 1}</th>
-                    <td>Desktop Support Technician</td>
-                    <td>{allBooking.price}</td>
-                    <td>15/11/2045</td>
-                    <td>17/4/2011</td>
-                    <td className="btn  btn-accent btn-xs rounded text-black  hover:text-white mt-4">
-                      Cancle
+                    <td>
+                      <div className="flex items-center space-x-3">
+                        <div className="avatar">
+                          <div className="mask mask-squircle w-12 h-12">
+                            <img
+                              src={allBooking?.image}
+                              alt="Avatar Tailwind CSS Component"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>{allBooking?.title}</td>
+                    <td>{allBooking?.location}</td>
+                    <td>{allBooking?.price}</td>
+                    <td>{allBooking?.from}</td>
+                    <td>{allBooking?.to}</td>
+                    <td>
+                      <button
+                        onClick={() => handleDelete(allBooking._id)}
+                        className="btn  btn-accent btn-xs rounded text-black  hover:text-white mt-4"
+                      >
+                        Cancle
+                      </button>
                     </td>
                   </tr>
                 );

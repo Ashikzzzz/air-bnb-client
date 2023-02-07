@@ -6,6 +6,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { motion } from "framer-motion";
 import { useQuery } from "react-query";
+import { FaStar } from "react-icons/fa";
 
 const HomeCollection = () => {
   // aos start
@@ -39,6 +40,13 @@ const HomeCollection = () => {
                 <div className="card-body">
                   <h2 className="font-bold text-2xl">{home.title}</h2>
                   <p>Price: {home.price}</p>
+                  <p className="flex justify-center items-center text-yellow-500">
+                    <FaStar></FaStar>
+                    <FaStar></FaStar>
+                    <FaStar></FaStar>
+                    <FaStar></FaStar>
+                    <FaStar></FaStar>
+                  </p>
                   <p>Clice to see Detail</p>
                 </div>
               </div>

@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
 import { useQuery } from "react-query";
-import EditModal from "./EditModal";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { Link } from "react-router-dom";
 
 const ManageHome = () => {
   const { user } = useContext(AuthContext);
@@ -46,6 +46,7 @@ const ManageHome = () => {
               <th></th>
               <th>Title</th>
               <th>Location</th>
+              <th>Price</th>
               <th>From</th>
               <th>To</th>
               <th>Action</th>
@@ -66,8 +67,10 @@ const ManageHome = () => {
                   </td>
                   <td>{home?.title}</td>
                   <td>{home?.location}</td>
+                  <td>{home?.price}</td>
                   <td>{home?.from}</td>
                   <td>{home?.to}</td>
+
                   <div className="mt-8">
                     <td>
                       <button
@@ -78,14 +81,14 @@ const ManageHome = () => {
                       </button>
                     </td>
                     <td>
-                      <label
-                        htmlFor="editModal"
-                        className="btn btn-xs btn-primary"
-                      >
-                        Edit
-                      </label>
-
-                      <EditModal home={home}></EditModal>
+                      <Link to={`/dashboard/updateHomeForm/${home._id}`}>
+                        <label
+                          htmlFor="editModal"
+                          className="btn btn-xs btn-primary"
+                        >
+                          Edit
+                        </label>
+                      </Link>
                     </td>
                   </div>
                 </tr>

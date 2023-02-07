@@ -7,6 +7,7 @@ import AllHome from "../../Dashboard/Dashboard/AllHome/AllHome";
 
 import Dashboard from "../../Dashboard/Dashboard/Dashboard";
 import ManageHome from "../../Dashboard/ManageHome/ManageHome";
+import UpdateHomeForm from "../../Dashboard/ManageHome/UpdateHomeForm";
 import MyBooking from "../../Dashboard/MyBooking/MyBooking";
 import DashboardLayout from "../../layout/DashboardLayout";
 import Screen from "../../layout/Screen";
@@ -124,6 +125,12 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/manage-home",
         element: <ManageHome></ManageHome>,
+      },
+      {
+        path: "/dashboard/updateHomeForm/:id",
+        element: <UpdateHomeForm></UpdateHomeForm>,
+        loader: ({ params }) =>
+          fetch(`${process.env.REACT_APP_API_URL}/home/${params.id}`),
       },
     ],
   },

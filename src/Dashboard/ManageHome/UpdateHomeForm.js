@@ -1,12 +1,56 @@
 import React from "react";
+import { useState } from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import { updateHomeInfo } from "../../Components/Api/HomeService";
 
-const UpdateHomeForm = ({ home }) => {
-  console.log(home);
+const UpdateHomeForm = () => {
+  const homes = useLoaderData();
+  const navigate = useNavigate();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const location = event.target.location.value;
+    const title = event.target.title.value;
+    const price = event.target.price.value;
+    const total_guest = event.target.total_guest.value;
+    const bedrooms = event.target.bedrooms.value;
+    const bathrooms = event.target.bathrooms.value;
+    const description = event.target.description.value;
+    const updateHomeData = {
+      location,
+      title,
+      price,
+      total_guest,
+      bedrooms,
+      bathrooms,
+      description,
+    };
+
+    fetch(`http://localhost:5000/home/${homes._id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updateHomeData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.success("Data Updated");
+        }
+        navigate("/dashboard/manage-home");
+      });
+  };
+
   return (
     <div>
       <div className="flex justify-center mt-6">
         <div className="w-full max-w-md p-8 space-y-3 text-gray-800 rounded-xl bg-gray-50">
-          <form className="space-y-6 ng-untouched ng-pristine ng-valid">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6 ng-untouched ng-pristine ng-valid"
+          >
             <div className="space-y-1 text-sm">
               <label htmlFor="location" className="block text-gray-600">
                 Location
@@ -17,7 +61,7 @@ const UpdateHomeForm = ({ home }) => {
                 id="location"
                 type="text"
                 placeholder="Location"
-                value={home?.location}
+                defaultValue={homes?.location}
                 required
               />
             </div>
@@ -31,6 +75,7 @@ const UpdateHomeForm = ({ home }) => {
                 id="title"
                 type="text"
                 placeholder="Title"
+                defaultValue={homes?.title}
                 required
               />
             </div>
@@ -46,6 +91,7 @@ const UpdateHomeForm = ({ home }) => {
                   id="price"
                   type="number"
                   placeholder="Price"
+                  defaultValue={homes?.price}
                   required
                 />
               </div>
@@ -60,6 +106,7 @@ const UpdateHomeForm = ({ home }) => {
                   id="guest"
                   type="number"
                   placeholder="Total guest"
+                  defaultValue={homes?.total_guest}
                   required
                 />
               </div>
@@ -76,6 +123,7 @@ const UpdateHomeForm = ({ home }) => {
                   id="bedrooms"
                   type="number"
                   placeholder="Bedrooms"
+                  defaultValue={homes?.bedrooms}
                   required
                 />
               </div>
@@ -90,24 +138,10 @@ const UpdateHomeForm = ({ home }) => {
                   id="bathrooms"
                   type="number"
                   placeholder="Bathrooms"
+                  defaultValue={homes?.bathrooms}
                   required
                 />
               </div>
-            </div>
-
-            <div className="flex space-x-4 items-center">
-              <label
-                htmlFor="image"
-                className="p-3 text-center rounded-md cursor-pointer text-gray-500 font-bold border  border-green-600 hover:bg-gradient-to-r hover:from-blue-500 hover:to-green-400 hover:border-white hover:text-white"
-              >
-                <input
-                  type="file"
-                  name="image"
-                  id="image"
-                  accept="image/*"
-                  hidden
-                />
-              </label>
             </div>
 
             <div className="space-y-1 text-sm">
@@ -119,6 +153,7 @@ const UpdateHomeForm = ({ home }) => {
                 id="description"
                 className="block rounded-md focus:green-300 w-full h-20 px-4 py-3 text-gray-800 bg-green-50 border border-green-300 focus:outline-green-500 "
                 name="description"
+                defaultValue={homes?.description}
               ></textarea>
             </div>
 
@@ -128,6 +163,7 @@ const UpdateHomeForm = ({ home }) => {
             >
               Submit
             </button>
+            <ToastContainer></ToastContainer>
           </form>
         </div>
       </div>

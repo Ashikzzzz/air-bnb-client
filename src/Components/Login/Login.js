@@ -2,14 +2,12 @@ import React from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
-import { FaGoogle, IconName } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { motion } from "framer-motion";
-
-// import { setAuthToken } from "../../Auth/Auth";
 
 const Login = () => {
   const { userEmail, setUserEmail } = useState("");
@@ -74,7 +72,6 @@ const Login = () => {
         .then((data) => {
           localStorage.setItem("airbnb-token", data.token);
         });
-      console.log(result);
     });
     setLoading(false).catch((err) => {
       toast.error(err.message);

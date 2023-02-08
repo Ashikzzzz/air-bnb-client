@@ -7,7 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 const AllBooking = () => {
   const {
     data: allBookings,
-    isLoading,
+
     refetch,
   } = useQuery({
     queryKey: ["bookings"],

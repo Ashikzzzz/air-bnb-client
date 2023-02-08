@@ -8,7 +8,6 @@ const Details = () => {
   const navigate = useNavigate();
   const from = format(new Date(homes?.from), "PP");
   const to = format(new Date(homes?.to), "PP");
-  console.log(homes);
 
   const handleReserve = () => {
     const data = {

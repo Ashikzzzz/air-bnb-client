@@ -16,14 +16,6 @@ const WhosComing = ({
             Let {host?.name} know a little about yourself and why you're coming.
           </p>
         </div>
-        {/* <div className="flex flex-col items-center justify-center">
-          <img
-            alt=""
-            className="w-16 h-16 border rounded-full"
-            src={host?.image}
-          />
-          <p>{host?.name}</p>
-        </div> */}
       </div>
       <textarea
         className="border block my-5 p-2 ml-16"

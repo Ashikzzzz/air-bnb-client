@@ -13,7 +13,6 @@ const ReviewHouse = ({ setSelectedIndex, chackoutData }) => {
   const from1 = new Date(chackoutData?.homes?.from);
   const to1 = new Date(chackoutData?.homes?.to);
   const dateDifference = differenceInCalendarDays(to1, from1);
-  console.log(dateDifference);
 
   return (
     <>

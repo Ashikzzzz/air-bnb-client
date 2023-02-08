@@ -7,7 +7,6 @@ import Carousle from "../Carousle/Carousle";
 import "./Home.css";
 import Homecard from "../Homecard/Homecard";
 import Typical from "react-typical";
-// import Spinner from "./Spinner";
 
 const Home = () => {
   useEffect(() => {

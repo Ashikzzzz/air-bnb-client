@@ -1,11 +1,11 @@
 import { format } from "date-fns";
 import React from "react";
-import { FaArrowRight, IconName } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa";
+
 const CheckoutCart = ({ chackoutData }) => {
   const from = format(new Date(chackoutData?.homes?.from), "PP");
   const to = format(new Date(chackoutData?.homes?.to), "PP");
-  // console.log(chackoutData);
+
   return (
     <div class="px-6 py-5 md:w-1/2 lg:w-full w-full h-full rounded-md shadow-lg">
       <div className="flex justify-between items-center">

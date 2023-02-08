@@ -4,7 +4,6 @@ import toast, { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
 
 import { useLocation, useNavigate } from "react-router-dom";
-// import { setAuthToken } from "../../Auth/Auth";
 
 const Register = () => {
   // contexts
@@ -12,7 +11,7 @@ const Register = () => {
     createUser,
     updateUserProfile,
     verifyEmail,
-    loading,
+
     setLoading,
     user,
   } = useContext(AuthContext);

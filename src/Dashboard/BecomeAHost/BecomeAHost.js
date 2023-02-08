@@ -38,9 +38,7 @@ const BecomeAHost = () => {
         email: user?.email,
       };
       // sending host request
-      hostRequest(hostData).then((data) => {
-        console.log(data);
-      });
+      hostRequest(hostData).then((data) => {});
     });
   };
 

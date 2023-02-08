@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBHY3mS-lL1mobcBC1AP3OxADpUk27z2us",
-  authDomain: "air-bnb-64832.firebaseapp.com",
-  projectId: "air-bnb-64832",
-  storageBucket: "air-bnb-64832.appspot.com",
-  messagingSenderId: "728735112227",
-  appId: "1:728735112227:web:51abe1c7b88916e4c0e596",
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
 };
 
 // Initialize Firebase

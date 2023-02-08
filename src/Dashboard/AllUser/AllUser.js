@@ -15,7 +15,6 @@ const AllUser = () => {
 
   const handleRequest = (user) => {
     makeHost(user).then((data) => {
-      console.log(data);
       getUsers();
     });
   };

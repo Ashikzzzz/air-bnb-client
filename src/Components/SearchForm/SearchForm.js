@@ -27,7 +27,9 @@ const SearchForm = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mt-6">Where do you want to go?</h1>
+      <h1 className="lg:text-3xl sm:text-2xl sm:block font-bold mt-6">
+        Where do you want to go?
+      </h1>
       <form onSubmit={handleSubmit}>
         <div className="mt-2">
           <label
@@ -38,7 +40,7 @@ const SearchForm = () => {
             Your Location
           </label>
           <input
-            className="input rounded-md shadow-2xl w-full"
+            className="input rounded-md shadow-2xl lg:w-full sm:full"
             type="text"
             name="location"
             value={location}
@@ -56,7 +58,7 @@ const SearchForm = () => {
                 selected={arrival}
                 name="arrival"
                 dateFormat="Pp"
-                className="w-full border-gray-600"
+                className="w-full border-gray-600 sm:w-full"
                 onChange={(date) => setArrival(date)}
               ></DatePicker>
             </div>
@@ -70,7 +72,7 @@ const SearchForm = () => {
               <DatePicker
                 selected={departure}
                 onChange={(date) => setDeparture(date)}
-                className="w-full "
+                className="w-full sm:w-full"
               ></DatePicker>
             </div>
             <i class="uil uil-calendar-alt text-lg w-6 h-6"></i>
@@ -80,7 +82,7 @@ const SearchForm = () => {
           <motion.button
             whileHover={{ scale: 1.1 }}
             type="submit"
-            className="btn btn-outline rounded-md w-full"
+            className="btn btn-outline rounded-md w-full sm:w-full"
           >
             Search
           </motion.button>

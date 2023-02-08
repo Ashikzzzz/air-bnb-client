@@ -1,7 +1,6 @@
 import React from "react";
 
 const DeleteModal = ({ booking, id, modalHandler }) => {
-  // console.log(booking);
   return (
     <div>
       <input type="checkbox" id="delete-modal" className="modal-toggle" />

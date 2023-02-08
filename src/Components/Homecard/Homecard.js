@@ -17,17 +17,19 @@ const Homecard = () => {
         <div className="">
           <div className="">
             <div className="flex justify-between items-center my-2">
-              <div className="flex items-center">
+              <div className="flex sm:flex-1 items-center">
                 <h2 className="mr-2 text-5xl font-semibold">Homes</h2>
-                <marquee className="bg-emerald-100 py-4 rounded-lg">
-                  <h3 className="text-3xl font-bold">
-                    Airbnb is an online marketplace that connects people who
-                    want to rent out their homes with people who are looking for
-                    accommodations in specific locales. Airbnb offers people an
-                    easy, relatively stress-free way to earn some income from
-                    their property.
-                  </h3>
-                </marquee>
+                <div>
+                  <marquee className="bg-emerald-100 py-4 rounded-lg sm:w-full">
+                    <h3 className="text-3xl font-bold">
+                      Airbnb is an online marketplace that connects people who
+                      want to rent out their homes with people who are looking
+                      for accommodations in specific locales. Airbnb offers
+                      people an easy, relatively stress-free way to earn some
+                      income from their property.
+                    </h3>
+                  </marquee>
+                </div>
               </div>{" "}
               <button className="btn btn-outline btn-info ml-2 rounded">
                 <Link to="/all-home">See All</Link>

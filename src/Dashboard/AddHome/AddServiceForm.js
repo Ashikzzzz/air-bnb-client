@@ -10,6 +10,9 @@ const AddServiceForm = ({
   setDepartureDate,
   loading,
   toast,
+  preview,
+  uploadImage,
+  handleImageChange,
 }) => {
   return (
     <>
@@ -134,14 +137,17 @@ const AddServiceForm = ({
                 htmlFor="image"
                 className="p-3 text-center rounded-md cursor-pointer text-gray-500 font-bold border  border-green-600 hover:bg-gradient-to-r hover:from-blue-500 hover:to-green-400 hover:border-white hover:text-white"
               >
+                {uploadImage}
                 <input
                   type="file"
                   name="image"
                   id="image"
+                  onChange={(event) => handleImageChange(event.target.files[0])}
                   accept="image/*"
                   hidden
                 />
               </label>
+              {preview && <img className="w-40 h-24" src={preview} alt="" />}
             </div>
 
             <div className="space-y-1 text-sm">

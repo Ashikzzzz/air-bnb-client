@@ -13,6 +13,8 @@ import { useNavigate } from "react-router-dom";
 const AddHome = () => {
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
+  const [preview, setPreview] = useState("");
+  const [uploadImage, setUploadImage] = useState("Upload Image");
   const [arrivalDate, setArrivalDate] = useState(new Date());
   const [departureDate, setDepartureDate] = useState(
     new Date(arrivalDate.getTime() + 24 * 60 * 60 * 1000)
@@ -46,11 +48,6 @@ const AddHome = () => {
           description,
           image: data,
           hostEmail: user?.email,
-          // host: {
-          //   name: user?.displayName,
-          //   image: user?.photoURL,
-          //   email: user?.email,
-          // },
         };
         console.log(homeData);
 
@@ -63,9 +60,14 @@ const AddHome = () => {
       })
       .catch((err) => {
         setLoading(false);
-        console.log(err);
       });
   };
+
+  const handleImageChange = (image) => {
+    setPreview(window.URL.createObjectURL(image));
+    setUploadImage(image.name);
+  };
+
   return (
     <>
       <h1 className="text-3xl font-bold text-gray-800 py-8 text-center">
@@ -79,6 +81,9 @@ const AddHome = () => {
         setDepartureDate={setDepartureDate}
         loading={loading}
         toast={toast}
+        preview={preview}
+        uploadImage={uploadImage}
+        handleImageChange={handleImageChange}
       />
     </>
   );

@@ -18,27 +18,6 @@ const Chackout = () => {
   const { state: chackoutData } = useLocation();
   const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-  console.log(chackoutData);
-
-  // const homeData = {
-  //   _id: "sfhsdjhaf2736huh",
-  //   location: "Dhaka,Bangladesh",
-  //   title: "Huge Apartment with 4 bedrooms",
-  //   image: "https://i.ibb.co/YPXktqs/Home1.jpg",
-  //   from: "17/2/2022",
-  //   to: "19/2/2022",
-  //   host: {
-  //     name: "jhon Doe",
-  //     email: "jhon@gmail.com",
-  //   },
-  //   price: 98,
-  //   total_guest: 4,
-  //   bedroom: 2,
-  //   bathroom: 2,
-  //   rating: 4.8,
-  //   review: 64,
-  // };
-
   const [bookingData, setBookingData] = useState({
     image: chackoutData?.homes?.image,
     title: chackoutData?.homes?.title,
